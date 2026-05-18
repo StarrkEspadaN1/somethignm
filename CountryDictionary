@@ -1,0 +1,38 @@
+using System;
+using System.Collections.Generic;
+
+public class CountryDictionary
+{
+    private Dictionary<string, string> enRu = new Dictionary<string, string>();
+    private Dictionary<string, string> ruEn = new Dictionary<string, string>();
+
+    public void AddPair(string english, string russian)
+    {
+        enRu[english] = russian;
+        ruEn[russian] = english;
+    }
+
+    public string Translate(string word, string direction)
+    {
+        if (direction == "en-ru" && enRu.ContainsKey(word))
+            return enRu[word];
+        if (direction == "ru-en" && ruEn.ContainsKey(word))
+            return ruEn[word];
+        return "Перевод не найден.";
+    }
+}
+
+// Пример использования
+public static void DictionaryDemo()
+{
+    var dict = new CountryDictionary();
+    dict.AddPair("Germany", "Германия");
+    dict.AddPair("France", "Франция");
+    dict.AddPair("Italy", "Италия");
+
+    Console.WriteLine("Выберите направление (en-ru / ru-en):");
+    string dir = Console.ReadLine();
+    Console.Write("Введите слово: ");
+    string word = Console.ReadLine();
+    Console.WriteLine(dict.Translate(word, dir));
+}
