@@ -1,0 +1,27 @@
+// Обобщённый класс точки на плоскости (из условия)
+public class Point2D<T> where T : struct
+{
+    public T X { get; set; }
+    public T Y { get; set; }
+
+    public Point2D(T x, T y)
+    {
+        X = x;
+        Y = y;
+    }
+
+    public override string ToString() => $"({X}, {Y})";
+}
+
+// Необобщённый класс точки в 3D, наследник Point2D<int>
+public class Point3D : Point2D<int>
+{
+    public int Z { get; set; }
+
+    public Point3D(int x, int y, int z) : base(x, y)
+    {
+        Z = z;
+    }
+
+    public override string ToString() => $"({X}, {Y}, {Z})";
+}
